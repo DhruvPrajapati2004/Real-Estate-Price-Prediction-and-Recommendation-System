@@ -37,28 +37,8 @@ headers = {
     'upgrade-insecure-requests': '1' # is used to indicate that the client supports upgrading insecure requests to secure requests
 }
 
-
-# Define the path to your project directory
-project_dir = r'C:\Users\Dhruv N Prajapati\Desktop\DS\Project -1\Data_Gathering'
-
-# Define the subdirectories
-subdirectories = ['Data', f'Data/{City}', f'Data/{City}/Flats', f'Data/{City}/Societies', f'Data/{City}/Residential', f'Data/{City}/Independent House']
-'''
-# Create the directory structure
-for subdir in subdirectories:
-    dir_path = os.path.join(project_dir, subdir)
-    if not os.path.exists(dir_path):
-        os.makedirs(dir_path)
-        print(f"Created directory: {dir_path}")
-    else:
-        print(f"Directory already exists: {dir_path}")
-'''
-# Now, your directory structure is created.
-
 # Put start page number and end page number.
 # Page number to start extraction data
-
-# start = int(input("Enter page number where you got error in last run.\nEnter page number to start from:")) # Starting Page
 
 if os.path.exists("last_page.txt"):
     with open("last_page.txt", "r") as f:
@@ -67,8 +47,6 @@ if os.path.exists("last_page.txt"):
 else:
     start = int(input("Enter page number where you got error in last run.\nEnter page number to start from:"))
 
-# End Page number- you can change is for start i am taking 10pages at a time,
-# as IPs are gettig block after some time
 end = 400 # Ending Page
 
 flats = pd.DataFrame()
@@ -106,7 +84,6 @@ try:
                                         price_per_sqft = price_per_sqft.get_text(strip=True)
                         except Exception as e:
                                 price_per_sqft = ''
-                        # print(price_per_sqft)
 
                         # price
                         try:
@@ -124,14 +101,12 @@ try:
                                                 price = price_text
                         except Exception as e:
                                 price = ''
-                        # print(price)
 
                         # how many BHK
                         try:
                                 BHK = soup.select_one("div", class_="PseudoTupleRevamp__subHeading PseudoTupleRevamp__projectHeading").find("h2").find(string=True, recursive=False)
                         except Exception as e:
                                 BHK = ''
-                        # print(BHK)
 
                         # property status : resale or new booking
                         try:
@@ -145,18 +120,17 @@ try:
                                         P_status = 'not available'
                         except Exception as e:
                                 P_status = ''
-                        # print(P_status)
 
                         # Description
                         try:
                                 description = soup.select_one("#srp_tuple_description").get_text(strip=True)
                         except Exception as e:
                                 description = ''
-                        # print(description)
 
                         page2 = requests.get(p_link, headers=headers, timeout=20)
                         soup2 = BeautifulSoup(page2.content, 'lxml')
                         req += 1
+                    
                         # Sleep to avoid hitting the server too hard
                         time.sleep(random.uniform(1, 5))
 
@@ -173,11 +147,10 @@ try:
                                         address = address.get_text(strip=True).replace('in', '', 1).strip(' ,')
                         except Exception as e:
                                 address = ''
-                                # print("Address not found")
 
                         # extract the property name
                         try:
-                                project_name = "N/A"  # Default value in case all attempts fail
+                                project_name = "n/a"  # Default value in case all attempts fail
 
                                 h1 = soup2.find("h1", class_="title_bold ellipsis")
                                 if h1:
@@ -205,14 +178,11 @@ try:
 
                         except Exception as e:
                                 print("Error extracting project_name:", e)
-                                project_name = "N/A"
-                        # if project_name == "N/A":
-                        #         raise ValueError("Project name could not be extracted (N/A)")
-                        # el
-                        if "Super Built" in project_name or "Carpet area" in project_name:
+                                project_name = "n/a"
+                        if project_name == "n/a":
+                                raise ValueError("Project name could not be extracted (N/A)")
+                        elif "Super Built" in project_name or "Carpet area" in project_name:
                                 raise ValueError("Project name could not be extracted")
-                        # print(project_name)
-                        time.sleep(random.uniform(1, 5))
 
                         # Area with Type :
                         try:
@@ -245,7 +215,6 @@ try:
                                         a_type = 'not available'
                         except Exception as e:
                                 a_type = ''
-                        # print(a_type)
 
                         # Floor Number
                         try:
@@ -263,7 +232,6 @@ try:
                                                         break
                         except Exception as e:
                                 floor = ''
-                        # print(floor)
 
                         # Facing
                         try:
@@ -273,7 +241,6 @@ try:
                                         facing = ""
                         except Exception as e:
                                 facing = ''
-                        # print(facing)
 
                         # Construction Status
                         try:
@@ -285,7 +252,6 @@ try:
                                         C_status = ''
                         except Exception as e:
                                 C_status = ''
-                        # print(C_status)
 
                         # Age Possession
                         try:
@@ -317,7 +283,6 @@ try:
                                                 completion_date = 'not available'
                         except Exception as e:
                                 age_possession = ''
-                        # print(age_possession)
 
                         # RERA id :
                         try:
@@ -349,7 +314,6 @@ try:
                                                         rera_id = "not available"
                         except Exception as e:
                                 rera_id = ''
-                        # print(rera_id)
 
                         # Nearby Landmarks
                         try:
@@ -366,7 +330,6 @@ try:
                                                         nearby_landmarks.append(text)
                         except Exception as e:
                                 nearby_landmarks = ''
-                        # print(nearby_landmarks)
 
                         # Furnish details
                         try:
@@ -380,7 +343,6 @@ try:
                                         furnish = 'Unfurnished'
                         except Exception as e:
                                 furnish = ''
-                        # print(furnish)
 
                         # Features
                         try:
@@ -404,7 +366,6 @@ try:
                                         features = 'not available'
                         except Exception as e:
                                 features = ''
-                        # print(features)
 
                         # Ratings
                         try:
@@ -416,14 +377,12 @@ try:
                                                 ratings.append(text)
                         except Exception as e:
                                 ratings = ''
-                        # print(ratings)
 
                         # Propety Id
                         if 'spid-' in p_link:
                                 property_id = p_link.split('spid-')[1]
                         else:
                                 property_id = 'not available'
-                        # print(property_id)
 
                         # no. of bedrooms, bathrooms, balconies etc.
                         try:
@@ -448,7 +407,6 @@ try:
                                 bathroom = ''
                                 balcony = ''
                                 additionalRoom = ''
-                        # print(bedroom, bathroom, balcony,additionalRoom)
 
                         # key highlights
                         try:
@@ -462,7 +420,6 @@ try:
                                         key_highlights = ' '
                         except Exception as e:
                                 key_highlights = ' '
-                        # print(key_highlights)
 
                         # open space
                         try:
@@ -478,7 +435,6 @@ try:
                         except Exception as e:
                                 open_space = ''
                                 units = ''
-                        # print(open_space, units)
 
                         # create a dictionary with the given variables
                         property_data = {
@@ -525,10 +481,11 @@ try:
                 with open("last_page.txt", "w") as f:
                         f.write(str(page_no))
                 pages_processed += 1
+            
                 # Save after every 5 pages
                 if pages_processed % 5 == 0:
                         batch_end = batch_start + 5
-                        csv_file_path = f'C:/Users/Dhruv N Prajapati/Desktop/DS/Project -1/Data_Gathering/Data/{City}/Flats/flats_{City}_page_{batch_start}_to_{batch_end}.csv'
+                        csv_file_path = f'C:/Users/Data_Gathering/Data/{City}/Flats/flats_{City}_page_{batch_start}_to_{batch_end}.csv'
                         if not flats.empty:
                                 if os.path.isfile(csv_file_path):
                                         flats.to_csv(csv_file_path, mode='a', header=False, index=False)
@@ -539,7 +496,7 @@ try:
                      
         # Final save for any remaining data (if total pages is not a multiple of 5)
         if not flats.empty:
-                csv_file_path = f'C:/Users/Dhruv N Prajapati/Desktop/DS/Project-1/Data_Gathering/Data/{City}/Flats/flats_{City}_page_{batch_start}_to_{page_no}.csv'
+                csv_file_path = f'C:/Users/Data_Gathering/Data/{City}/Flats/flats_{City}_page_{batch_start}_to_{page_no}.csv'
                 os.makedirs(os.path.dirname(csv_file_path), exist_ok=True)
                 if os.path.isfile(csv_file_path):
                         flats.to_csv(csv_file_path, mode='a', header=False, index=False)
@@ -548,7 +505,7 @@ try:
 
 except KeyboardInterrupt:
         print("Interrupted by user, saving progress...")
-        csv_file_path = f'C:/Users/Dhruv N Prajapati/Desktop/DS/Project-1/Data_Gathering/Data/{City}/Flats/flats_{City}_page_{batch_start}_to_{page_no}_interrupted.csv'
+        csv_file_path = f'C:/Users/Data_Gathering/Data/{City}/Flats/flats_{City}_page_{batch_start}_to_{page_no}_interrupted.csv'
         os.makedirs(os.path.dirname(csv_file_path), exist_ok=True)
         if not flats.empty:
                 if os.path.isfile(csv_file_path):
@@ -560,10 +517,9 @@ except Exception as e:
         print(e)
         print(f'{page_no} -> {count}')
         print("----------------")
-        print("""Your IP might have blocked. Delete Runitme and reconnect again with updating start page number.\n
-                        You would see in output above like 1 -> 15 and so 1 is page number and 15 is data items extracted.""")
+        print("""Your IP might have blocked. Delete Runitme and reconnect again with updating start page number.""")
         
-        csv_file_path = f'C:/Users/Dhruv N Prajapati/Desktop/DS/Project-1/Data_Gathering/Data/{City}/Flats/flats_{City}_page_{batch_start}_to_{page_no}.csv'
+        csv_file_path = f'C:/Users/Data_Gathering/Data/{City}/Flats/flats_{City}_page_{batch_start}_to_{page_no}.csv'
         os.makedirs(os.path.dirname(csv_file_path), exist_ok=True)
         # This file will be new every time if start page will chnage, but still taking here mode as append
         if os.path.isfile(csv_file_path):
@@ -572,18 +528,16 @@ except Exception as e:
         else:
                 # Write DataFrame to the file with header - first time write
                 flats.to_csv(csv_file_path, mode='a', header=True, index=False)
-        # Wait for 5 to 10 minutes
+       
         print("running block solve")
         block_solve.reset_wifi()
 
         wait_time = random.randint(60, 180)
         print(f"Waiting for {wait_time // 60} minutes...")
         time.sleep(wait_time)
-        # Re-run the script from the last successful page
         
+        # Re-run the script from the last successful page
         script_path = os.path.abspath(sys.argv[0])
         print("Restarting script with:", [sys.executable, script_path] + sys.argv[1:])
         subprocess.run([sys.executable, script_path] + sys.argv[1:])
         sys.exit()
-# 44 - again
-# 65 - again
