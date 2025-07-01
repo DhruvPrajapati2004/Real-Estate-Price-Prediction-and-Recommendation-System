@@ -37,24 +37,6 @@ headers = {
     'upgrade-insecure-requests': '1' # is used to indicate that the client supports upgrading insecure requests to secure requests
 }
 
-
-# Define the path to your project directory
-project_dir = r'C:\Users\Dhruv N Prajapati\Desktop\DS\Project -1\Data_Gathering'
-
-# Define the subdirectories
-subdirectories = ['Data', f'Data/{City}', f'Data/{City}/Flats', f'Data/{City}/Societies', f'Data/{City}/Residential', f'Data/{City}/Independent House']
-'''
-# Create the directory structure
-for subdir in subdirectories:
-    dir_path = os.path.join(project_dir, subdir)
-    if not os.path.exists(dir_path):
-        os.makedirs(dir_path)
-        print(f"Created directory: {dir_path}")
-    else:
-        print(f"Directory already exists: {dir_path}")
-'''
-# Now, your directory structure is created.
-
 # Put start page number and end page number.
 # Page number to start extraction data
 
