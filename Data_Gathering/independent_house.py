@@ -471,7 +471,7 @@ try:
         # Save after every 5 pages
         if pages_processed % 5 == 0:
                 batch_end = batch_start + 5
-                csv_file_path = f'C:/Users/Dhruv N Prajapati/Desktop/DS/Project-1/Data_Gathering/Data/{City}/Independent House/house_{City}_page_{batch_start}_to_{batch_end}.csv'
+                csv_file_path = f'C:/Users/Data_Gathering/Data/{City}/Independent House/house_{City}_page_{batch_start}_to_{batch_end}.csv'
                 if not House.empty:
                         if os.path.isfile(csv_file_path):
                                 House.to_csv(csv_file_path, mode='a', header=False, index=False)
@@ -481,7 +481,7 @@ try:
                 batch_start = batch_end
 # Final save for any remaining data (if total pages is not a multiple of 5)
     if not House.empty:
-            csv_file_path = f'C:/Users/Dhruv N Prajapati/Desktop/DS/Project-1/Data_Gathering/Data/{City}/Independent House/house_{City}_page_{batch_start}_to_{page_no}.csv'
+            csv_file_path = f'C:/Users/Data_Gathering/Data/{City}/Independent House/house_{City}_page_{batch_start}_to_{page_no}.csv'
             os.makedirs(os.path.dirname(csv_file_path), exist_ok=True)
             if os.path.isfile(csv_file_path):
                     House.to_csv(csv_file_path, mode='a', header=False, index=False)
@@ -490,7 +490,7 @@ try:
 
 except KeyboardInterrupt:
         print("Interrupted by user, saving progress...")
-        csv_file_path = f'C:/Users/Dhruv N Prajapati/Desktop/DS/Project-1/Data_Gathering/Data/{City}/Independent House/house_{City}_page_{batch_start}_to_{page_no}_interrupted.csv'
+        csv_file_path = f'C:/Users/Data_Gathering/Data/{City}/Independent House/house_{City}_page_{batch_start}_to_{page_no}_interrupted.csv'
         os.makedirs(os.path.dirname(csv_file_path), exist_ok=True)
         if not House.empty:
                 if os.path.isfile(csv_file_path):
@@ -505,7 +505,7 @@ except Exception as e:
     print("----------------")
     print("""Your IP might have blocked. Delete Runitme and reconnect again with updating start page number.""")
 
-    csv_file_path = f'C:/Users/Dhruv N Prajapati/Desktop/DS/Project-1/Data_Gathering/Data/{City}/Independent House/house_{City}_page_{batch_start}_to_{page_no}.csv'
+    csv_file_path = f'C:/Users/Data_Gathering/Data/{City}/Independent House/house_{City}_page_{batch_start}_to_{page_no}.csv'
     os.makedirs(os.path.dirname(csv_file_path), exist_ok=True)
     # This file will be new every time if start page will chnage, but still taking here mode as append
     if os.path.isfile(csv_file_path):
@@ -514,15 +514,15 @@ except Exception as e:
     else:
             # Write DataFrame to the file with header - first time write
             House.to_csv(csv_file_path, mode='a', header=True, index=False)
-    # Wait for 5 to 10 minutes
+   
     print("running block solve")
     block_solve.reset_wifi()
 
     wait_time = random.randint(60, 180)
     print(f"Waiting for {wait_time // 60} minutes...")
     time.sleep(wait_time)
-    # Re-run the script from the last successful page
     
+    # Re-run the script from the last successful page
     script_path = os.path.abspath(sys.argv[0])
     print("Restarting script with:", [sys.executable, script_path] + sys.argv[1:])
     subprocess.run([sys.executable, script_path] + sys.argv[1:])
