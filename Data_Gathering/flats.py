@@ -9,6 +9,7 @@ import random
 import sys
 import subprocess
 import block_solve
+import combine_files
 
 # Need to change as per your requirement - city name
 # Match with 99acers site like for chandighars flats data site is : https://www.99acres.com/flats-in-chandigarh-ffid
@@ -541,3 +542,12 @@ except Exception as e:
         print("Restarting script with:", [sys.executable, script_path] + sys.argv[1:])
         subprocess.run([sys.executable, script_path] + sys.argv[1:])
         sys.exit()
+
+# Replace with the actual folder path
+folder_path = 'C:/Users/Data_Gathering/Data/Ahmedabad/Flats' 
+
+# Replace with the desired combined file path
+combined_file_path = 'C:/Users/Data_Gathering/Data/Ahmedabad/Flats/combined_land_ahmedabad.csv'
+
+combine_files.combine_csv_files(folder_path, combined_file_path)
+
