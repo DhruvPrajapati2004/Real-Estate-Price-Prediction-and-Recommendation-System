@@ -9,7 +9,7 @@ import random
 import sys
 import subprocess
 import block_solve
-
+import combine_files
 City = 'ahmedabad'
 
 # user agent to avoid blocking requests
@@ -529,9 +529,9 @@ except Exception as e:
     sys.exit()
 
 # Replace with the actual folder path
-folder_path = 'C:/Users/Dhruv N Prajapati/Data_Gathering/Data/Ahmedabad/Independent House' 
+folder_path = 'C:/Users/Data_Gathering/Data/Ahmedabad/Residential Lands' 
 
 # Replace with the desired combined file path
-combined_file_path = 'C:/Users/Data_Gathering/Data/Ahmedabad/Independent House/combined_land_ahmedabad.csv'
+combined_file_path = 'C:/Users/Data_Gathering/Data/Ahmedabad/Residential Lands/combined_land_ahmedabad.csv'
 
-combine_csv_files(folder_path, combined_file_path)
+combine_files.combine_csv_files(folder_path, combined_file_path)
