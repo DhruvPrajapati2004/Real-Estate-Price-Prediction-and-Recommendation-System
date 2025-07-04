@@ -527,3 +527,11 @@ except Exception as e:
     print("Restarting script with:", [sys.executable, script_path] + sys.argv[1:])
     subprocess.run([sys.executable, script_path] + sys.argv[1:])
     sys.exit()
+
+# Replace with the actual folder path
+folder_path = 'C:/Users/Dhruv N Prajapati/Data_Gathering/Data/Ahmedabad/Independent House' 
+
+# Replace with the desired combined file path
+combined_file_path = 'C:/Users/Data_Gathering/Data/Ahmedabad/Independent House/combined_land_ahmedabad.csv'
+
+combine_csv_files(folder_path, combined_file_path)
