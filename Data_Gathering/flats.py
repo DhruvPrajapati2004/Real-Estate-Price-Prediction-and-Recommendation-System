@@ -547,7 +547,7 @@ except Exception as e:
 folder_path = 'C:/Users/Data_Gathering/Data/Ahmedabad/Flats' 
 
 # Replace with the desired combined file path
-combined_file_path = 'C:/Users/Data_Gathering/Data/Ahmedabad/Flats/combined_land_ahmedabad.csv'
+combined_file_path = 'C:/Users/Data_Gathering/Data/Ahmedabad/Flats/combined_flats_ahmedabad.csv'
 
 combine_files.combine_csv_files(folder_path, combined_file_path)
 
