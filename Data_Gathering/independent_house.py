@@ -10,6 +10,7 @@ import sys
 import subprocess
 import block_solve
 import combine_files
+
 City = 'ahmedabad'
 
 # user agent to avoid blocking requests
@@ -532,6 +533,6 @@ except Exception as e:
 folder_path = 'C:/Users/Data_Gathering/Data/Ahmedabad/Independent House' 
 
 # Replace with the desired combined file path
-combined_file_path = 'C:/Users/Data_Gathering/Data/Ahmedabad/Independent House/combined_land_ahmedabad.csv'
+combined_file_path = 'C:/Users/Data_Gathering/Data/Ahmedabad/Independent House/combined_house_ahmedabad.csv'
 
 combine_files.combine_csv_files(folder_path, combined_file_path)
