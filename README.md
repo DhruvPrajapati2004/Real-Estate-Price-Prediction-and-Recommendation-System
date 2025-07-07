@@ -1,4 +1,4 @@
-# Capstone-Project- Property-Valuation-System
+# Real-Estate-Price-Prediction-and-Recommendation-System
 
 # 🏠 AI-Driven Property Valuation and Recommendation System
 
