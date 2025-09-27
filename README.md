@@ -22,9 +22,10 @@ This end-to-end project covers:
 
 ```
 real-estate-price-prediction/
-├── data/                  # Raw and cleaned datasets
+├── Data_Gathering/        # Raw and cleaned datasets
+├── Data_Preprocessing     # Data preprocessing
 ├── notebooks/             # EDA and modeling notebooks
-├── src/                   # Data preprocessing, modeling, and utils
+├── src/                   # modeling, and utils
 ├── app/                   # Streamlit app files
 ├── outputs/               # Trained models and visuals
 ├── requirements.txt       # Project dependencies
