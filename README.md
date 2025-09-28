@@ -23,14 +23,9 @@ This end-to-end project covers:
 ```
 real-estate-price-prediction/
 ├── Data_Gathering/        # Raw and cleaned datasets
-├── Data_Preprocessing/     # Data preprocessing
-├── notebooks/             # EDA and modeling notebooks
-├── src/                   # modeling, and utils
-├── app/                   # Streamlit app files
-├── outputs/               # Trained models and visuals
-├── requirements.txt       # Project dependencies
-├── README.md              # Documentation
-└── .gitignore             # Ignored files and folders
+├── Data_Preprocessing/    # Data preprocessing,EDA
+├── Model_Selection/       # Model selection
+└──  README.md              # Documentation
 ```
 
 ---
@@ -145,10 +140,9 @@ Deployed via Streamlit for a smooth user experience and cloud accessibility.
 ## 🛠️ Tech Stack
 
 - **Python**, **Pandas**, **NumPy**, **Scikit-learn**
-- **XGBoost**, **LightGBM**, **SHAP**
+- **XGBoost**, **LightGBM**
 - **Matplotlib**, **Seaborn**, **Plotly**
-- **Streamlit** (Web UI)
-- **AWS EC2/S3** (Deployment)
+
 
 ---
 
